@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pythdle</title>
+
+  <!-- PyScript: permite ejecutar Python dentro del navegador -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Barra superior: idioma a la izquierda, estadísticas y ayuda a la derecha -->
+  <header id="barra">
+    <label class="selector-idioma">
+      <span aria-hidden="true">🌐</span>
+      <select id="idioma"></select>   <!-- Python agrega los idiomas -->
+    </label>
+    <h1>Pythdle</h1>
+    <div class="iconos">
+      <button id="btn-estadisticas" class="icono">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="12" width="4" height="8" rx="1"/>
+          <rect x="10" y="7" width="4" height="13" rx="1"/>
+          <rect x="16" y="3" width="4" height="17" rx="1"/>
+        </svg>
+      </button>
+      <button id="btn-ayuda" class="icono">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6"/>
+          <circle cx="12" cy="17.3" r="0.4"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <p id="info">Cargando...</p>
+
+  <div id="tablero"></div>
+
+  <p id="mensaje"></p>
+  <p id="cuenta"></p>
+  <button id="ver-resultado" hidden></button>
+
+  <!-- Python crea aquí las teclas -->
+  <div id="teclado"></div>
+
+  <!-- Al terminar, aparece en el centro una ventana con el resultado,
+       para qué sirve el comando y cuántas personas lo adivinaron hoy -->
+  <div id="modal" hidden>
+    <div id="explicacion"></div>
+  </div>
+
+  <!-- Paneles de "Estadísticas" y "Cómo jugar" -->
+  <div id="panel" hidden>
+    <div class="ventana">
+      <div class="cabecera">
+        <h2 id="panel-titulo"></h2>
+        <button class="cerrar-panel">×</button>
+      </div>
+      <div id="panel-cuerpo"></div>
+    </div>
+  </div>
+
+  <!-- Nuestro juego, ahora escrito en Python.
+       "files" copia los otros archivos .py para poder importarlos. -->
+  <script type="py" src="script.py" config='{"files": {"./explicaciones.py": "./explicaciones.py", "./idiomas.py": "./idiomas.py"}}'></script>
+</body>
+</html>
